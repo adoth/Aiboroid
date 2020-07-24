@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="fragment"
+            type="com.example.aiboroid.AccessTokenSettingFragment" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        tools:context=".AccessTokenSettingFragment">
+
+        <TextView
+            android:id="@+id/access_token_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/access_token_description" />
+
+        <EditText
+            android:id="@+id/input_access_token"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/access_token_register_button"
+            android:autofillHints="no"
+            android:ems="10"
+            android:hint="@string/access_token"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/access_token_register_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:text="@string/access_token_register_button"
+            android:onClick="@{() -> fragment.onResisterButtonClick(inputAccessToken.getText().toString())}"/>
+    </RelativeLayout>
+</layout>
