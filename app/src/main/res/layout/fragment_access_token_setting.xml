@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="viewmodel"
-            type="com.example.aiboroid.viewmodel.AccessTokenSettingViewModel" />
+            name="fragment"
+            type="com.example.aiboroid.AccessTokenSettingFragment" />
     </data>
 
     <RelativeLayout
@@ -38,6 +38,6 @@
             android:layout_alignParentBottom="true"
             android:layout_centerInParent="true"
             android:text="@string/access_token_register_button"
-            android:onClick="@{() -> viewmodel.onResisterButtonClick(inputAccessToken.getText().toString())}"/>
+            android:onClick="@{() -> fragment.onResisterButtonClick(inputAccessToken.getText().toString())}"/>
     </RelativeLayout>
 </layout>
