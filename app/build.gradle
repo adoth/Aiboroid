@@ -28,7 +28,6 @@ android {
         dataBinding = true
         viewBinding = true
     }
-
 }
 
 dependencies {
@@ -49,5 +48,5 @@ dependencies {
     implementation "org.koin:koin-android-viewmodel:2.1.6"
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation "androidx.room:room-runtime:$room_version"
-    annotationProcessor "androidx.room:room-compiler:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
 }
