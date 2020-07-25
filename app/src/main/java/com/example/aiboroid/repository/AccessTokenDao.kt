@@ -8,8 +8,11 @@ import com.example.aiboroid.model.AccessToken
 @Dao
 interface AccessTokenDao {
     @Query("SELECT * FROM accessToken WHERE uuid = :uuid")
-    fun getAccessToken(uuid: String) : AccessToken
+    suspend fun getAccessToken(uuid: String) : AccessToken?
+
+    @Query("SELECT * FROM accessToken")
+    suspend fun getAll() : List<AccessToken>
 
     @Insert
-    fun insertAccessToken(accessToken: AccessToken)
+    suspend fun insertAccessToken(accessToken: AccessToken)
 }

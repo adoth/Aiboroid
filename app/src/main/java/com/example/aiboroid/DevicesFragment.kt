@@ -6,11 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import com.example.aiboroid.databinding.FragmentDevicesBinding
+import com.example.aiboroid.repository.AccessTokenRepository
 import com.example.aiboroid.viewmodel.DevicesViewModel
+import kotlinx.android.synthetic.main.fragment_devices.*
 
 class DevicesFragment : Fragment() {
 
-    private lateinit var viewModel: DevicesViewModel
+    private var viewModel = DevicesViewModel()
+    private val accessTokenRepository = AccessTokenRepository()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,8 +26,14 @@ class DevicesFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(DevicesViewModel::class.java)
-        // TODO: Use the ViewModel
+        viewModel.accessToken.observe(viewLifecycleOwner, Observer {
+            tmp.text = "hogehoge"
+        })
+
+        button.setOnClickListener {
+            viewModel.getAccessToken()
+        }
     }
+
 
 }
