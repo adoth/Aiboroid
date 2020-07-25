@@ -2,20 +2,18 @@ package com.example.aiboroid.repository
 
 import com.example.aiboroid.AiboroidApplication
 import com.example.aiboroid.model.AccessToken
-import java.util.*
 
 class AccessTokenRepository {
     suspend fun store(accessToken: String) {
         // TODO: for now id
-        val storeAccessToken = AccessToken(UUID.randomUUID().toString(), accessToken)
+        val storeAccessToken = AccessToken("1", accessToken)
         val dao = AiboroidApplication.database.accessTokenDao()
         dao.insertAccessToken(storeAccessToken)
     }
 
-    suspend fun get() : String? {
+    suspend fun get() : AccessToken? {
         val dao = AiboroidApplication.database.accessTokenDao()
-        val accessToken = dao.getAccessToken(UUID.randomUUID().toString())
-        return accessToken?.accessToken
+        return dao.getAccessToken("1")
     }
 
     suspend fun findAll(): List<AccessToken> {

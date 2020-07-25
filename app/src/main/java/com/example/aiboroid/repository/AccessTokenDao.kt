@@ -1,8 +1,6 @@
 package com.example.aiboroid.repository
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.example.aiboroid.model.AccessToken
 
 @Dao
@@ -13,6 +11,6 @@ interface AccessTokenDao {
     @Query("SELECT * FROM accessToken")
     suspend fun getAll() : List<AccessToken>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAccessToken(accessToken: AccessToken)
 }

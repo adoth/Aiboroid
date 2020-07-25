@@ -16,9 +16,7 @@ class DevicesViewModel : ViewModel() {
 
     fun getAccessToken() {
         viewModelScope.launch {
-            accessTokenRepository.findAll()
-            Thread.sleep(5000)
-            accessToken.value = AccessToken("1", "dadada")
+            accessToken.value = accessTokenRepository.get()
         }
     }
 }
