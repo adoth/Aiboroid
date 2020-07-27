@@ -6,9 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.aiboroid.adapter.CardRecyclerAdapter
 import com.example.aiboroid.databinding.FragmentDevicesBinding
 import com.example.aiboroid.viewmodel.DevicesViewModel
-import kotlinx.android.synthetic.main.fragment_devices.*
 
 class DevicesFragment : Fragment() {
     private var _binding: FragmentDevicesBinding? = null
@@ -31,7 +32,8 @@ class DevicesFragment : Fragment() {
         })
         viewModel.devices.observe(viewLifecycleOwner, Observer {
             binding.progressBar.visibility = View.INVISIBLE
-            textView.text = viewModel.devices.value?.get(0)?.nickname
+            binding.deviceRecyclerView.layoutManager = LinearLayoutManager(context)
+            binding.deviceRecyclerView.adapter = CardRecyclerAdapter(viewModel.devices.value!!)
         })
     }
 

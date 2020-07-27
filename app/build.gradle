@@ -51,6 +51,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation "org.koin:koin-android-viewmodel:2.1.6"
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
 
     def coroutines_version = "1.2.2" // TODO: for now
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
