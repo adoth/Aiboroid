@@ -10,14 +10,15 @@ import com.example.aiboroid.viewmodel.AccessTokenSettingViewModel
 
 
 class AccessTokenSettingFragment : Fragment() {
-    private lateinit var binding: FragmentAccessTokenSettingBinding
+    private var _binding: FragmentAccessTokenSettingBinding? = null
+    private val binding get() = _binding!!
     private val viewModel = AccessTokenSettingViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentAccessTokenSettingBinding.inflate(inflater, container, false)
+        _binding = FragmentAccessTokenSettingBinding.inflate(inflater, container, false)
         binding.fragment = this
         return binding.root
     }
@@ -26,5 +27,10 @@ class AccessTokenSettingFragment : Fragment() {
         viewModel.storeAccessToken(accessToken)
         val activity = activity as MainActivity
         activity.replaceFragment(DevicesFragment())
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

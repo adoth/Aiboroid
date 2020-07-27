@@ -4,4 +4,5 @@
     <string name="access_token">access token</string>
     <string name="access_token_description">アクセストークンを設定します。このアクセストークンはディバイス上に安全に保存されます。アクセストークンの取得方法は公式サイトを見てください。</string>
     <string name="access_token_register_button">aibo を探す</string>
+    <string name="device_image_description">device image</string>
 </resources>
