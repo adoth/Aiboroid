@@ -7,12 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.aiboroid.databinding.FragmentAccessTokenSettingBinding
 import com.example.aiboroid.viewmodel.AccessTokenSettingViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class AccessTokenSettingFragment : Fragment() {
     private var _binding: FragmentAccessTokenSettingBinding? = null
     private val binding get() = _binding!!
-    private val viewModel = AccessTokenSettingViewModel()
+    private val viewModel: AccessTokenSettingViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

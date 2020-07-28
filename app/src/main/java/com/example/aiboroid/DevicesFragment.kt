@@ -10,11 +10,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.aiboroid.adapter.CardRecyclerAdapter
 import com.example.aiboroid.databinding.FragmentDevicesBinding
 import com.example.aiboroid.viewmodel.DevicesViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DevicesFragment : Fragment() {
     private var _binding: FragmentDevicesBinding? = null
     private val binding get() = _binding!!
-    private var viewModel = DevicesViewModel()
+    private val viewModel: DevicesViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +42,4 @@ class DevicesFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
-
 }

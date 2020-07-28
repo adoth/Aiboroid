@@ -3,7 +3,7 @@ package com.example.aiboroid.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.aiboroid.AiboroidApplication
+import com.example.aiboroid.api.TmpName
 import com.example.aiboroid.model.AccessToken
 import com.example.aiboroid.model.Device
 import com.example.aiboroid.repository.AccessTokenRepository
@@ -28,10 +28,11 @@ class DevicesViewModel : ViewModel() {
     }
 
     fun getDeviceApi() {
-        val at = accessToken.value?.accessToken.toString()
         viewModelScope.launch {
             try {
-                val response = AiboroidApplication.settingService.getDevice()
+                // TODO injection
+                val settingService = TmpName(accessToken.value?.accessToken.toString()).settingService
+                val response = settingService.getDevice()
                 devices.value = response.body()?.devices
             } catch (e: Exception) {
                 // TODO: Error handling
