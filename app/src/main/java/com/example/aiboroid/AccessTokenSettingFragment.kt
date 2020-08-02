@@ -5,8 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.aiboroid.databinding.FragmentAccessTokenSettingBinding
 import com.example.aiboroid.viewmodel.AccessTokenSettingViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -28,7 +27,7 @@ class AccessTokenSettingFragment : Fragment() {
 
     fun onResisterButtonClick(view: View, accessToken: String) {
         viewModel.storeAccessToken(accessToken)
-        Navigation.findNavController(view)
+        findNavController()
             .navigate(R.id.action_accessTokenSettingFragment_to_devicesFragment)
     }
 
