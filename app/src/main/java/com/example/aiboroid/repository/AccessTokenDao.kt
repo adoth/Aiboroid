@@ -13,4 +13,7 @@ interface AccessTokenDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAccessToken(accessToken: AccessToken)
+
+    @Delete
+    suspend fun delete(accessToken: AccessToken)
 }
