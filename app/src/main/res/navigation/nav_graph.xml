@@ -12,14 +12,20 @@
         <action
             android:id="@+id/action_accessTokenSettingFragment_to_devicesFragment"
             app:destination="@id/devicesFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out" />
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_to_left" />
     </fragment>
     <fragment
         android:id="@+id/devicesFragment"
         android:name="com.example.aiboroid.DevicesFragment"
         android:label="fragment_devices"
         tools:layout="@layout/fragment_devices">
+        <action
+            android:id="@+id/action_devicesFragment_to_accessTokenSettingFragment"
+            app:destination="@id/accessTokenSettingFragment"
+            app:enterAnim="@anim/slide_from_left"
+            app:exitAnim="@anim/slide_to_right"
+            />
     </fragment>
 
 </navigation>

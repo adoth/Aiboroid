@@ -63,7 +63,7 @@ class DevicesFragment : Fragment() {
             .setCancelable(false)
             .setMessage(R.string.dialog_access_token_invalid)
             .setPositiveButton(R.string.dialog_access_token_invalid_positive, DialogInterface.OnClickListener { _, _ ->
-                findNavController().navigate(R.id.accessTokenSettingFragment)
+                findNavController().navigate(R.id.action_devicesFragment_to_accessTokenSettingFragment)
             })
             .show()
     }
