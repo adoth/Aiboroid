@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.navigation.fragment.findNavController
 import com.example.aiboroid.databinding.FragmentAccessTokenSettingBinding
 import com.example.aiboroid.viewmodel.AccessTokenSettingViewModel
@@ -25,7 +26,14 @@ class AccessTokenSettingFragment : Fragment() {
         return binding.root
     }
 
-    fun onResisterButtonClick(view: View, accessToken: String) {
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            // Do Nothing
+        }
+    }
+
+    fun onResisterButtonClick(accessToken: String) {
         viewModel.storeAccessToken(accessToken)
         findNavController()
             .navigate(R.id.action_accessTokenSettingFragment_to_devicesFragment)
