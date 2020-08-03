@@ -48,7 +48,6 @@ class DevicesViewModel(private val accessTokenRepository: AccessTokenRepository)
             if (response.isSuccessful)
                 devices.value = response.body()?.devices
             else {
-                // TODO: Error handling
                 when(response.code()) {
                     401 -> accessTokenState.value = AccessTokenState.INVALID
                     429 -> accessTokenState.value = AccessTokenState.EXCEED_RATE_LIMIT

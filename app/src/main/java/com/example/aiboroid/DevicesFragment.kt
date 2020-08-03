@@ -34,6 +34,8 @@ class DevicesFragment : Fragment() {
                     this.viewModel.deleteAccessToken()
                     showInvalidAccessTokenDialog()
                 }
+                DevicesViewModel.AccessTokenState.EXCEED_RATE_LIMIT -> showExceedRateLimitDialog()
+                DevicesViewModel.AccessTokenState.SERVER_ERROR -> showServerErrorDialog()
                 else -> findNavController().navigate(R.id.accessTokenSettingFragment)
             }
         })
@@ -60,11 +62,27 @@ class DevicesFragment : Fragment() {
 
     private fun showInvalidAccessTokenDialog() {
         AlertDialog.Builder(requireContext())
-            .setCancelable(false)
+            .setCancelable(true)
             .setMessage(R.string.dialog_access_token_invalid)
             .setPositiveButton(R.string.dialog_access_token_invalid_positive, DialogInterface.OnClickListener { _, _ ->
                 findNavController().navigate(R.id.action_devicesFragment_to_accessTokenSettingFragment)
             })
+            .setOnCancelListener { findNavController().navigate(R.id.action_devicesFragment_to_accessTokenSettingFragment) }
             .show()
     }
+
+    private fun showExceedRateLimitDialog() {
+        AlertDialog.Builder(requireContext())
+            .setCancelable(false)
+            .setMessage(R.string.dialog_exceed_rate_limit)
+            .show()
+    }
+
+    private fun showServerErrorDialog() {
+        AlertDialog.Builder(requireContext())
+            .setCancelable(false)
+            .setMessage(R.string.dialog_server_error)
+            .show()
+    }
+
 }
