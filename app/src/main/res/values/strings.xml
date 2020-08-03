@@ -1,11 +1,18 @@
 <resources>
     <string name="app_name">Aiboroid</string>
 
+    <!-- Access token setting -->
     <string name="access_token">access token</string>
     <string name="access_token_description">アクセストークンを設定します。このアクセストークンはディバイス上に安全に保存されます。アクセストークンの取得方法は公式サイトを見てください。</string>
+    <string name="access_token_paste_clipboard_button">貼り付ける</string>
     <string name="access_token_register_button">aibo を探す</string>
+    <string name="access_token_toast_invalid_access_token">不正な文字が含まれています。</string>
+    <string name="access_token_toast_empty_access_token">アクセストークンを入力してください。</string>
+
+    <!-- Devices -->
     <string name="device_image_description">device image</string>
 
+    <!-- Dialog -->
     <string name="dialog_access_token_invalid">無効なアクセストークンか期限切れのアクセストークンです。\nアクセストークンが正しいか確認して再度入力してください。</string>
     <string name="dialog_access_token_invalid_positive">入力しなおす</string>
     <string name="dialog_exceed_rate_limit">一時間あたりにおける操作回数の上限を超えました。しばらく時間をおいてから試してみてください。</string>

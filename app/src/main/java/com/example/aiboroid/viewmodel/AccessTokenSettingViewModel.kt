@@ -14,4 +14,7 @@ class AccessTokenSettingViewModel() : ViewModel() {
             accessTokenRepository.store(accessToken)
         }
     }
+
+    fun invalidAccessToken(clipboardText: String): Boolean =
+        Regex("""^[a-zA-Z0-9.\-_&&[^ ]]+$""").matchEntire(clipboardText) == null
 }
