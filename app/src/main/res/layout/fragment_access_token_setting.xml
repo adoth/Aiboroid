@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerInParent="true"
-            android:onClick="@{(view) -> fragment.onResisterButtonClick(view, inputAccessToken.getText().toString())}"
+            android:onClick="@{() -> fragment.onResisterButtonClick(inputAccessToken.getText().toString())}"
             android:text="@string/access_token_register_button" />
     </RelativeLayout>
 </layout>

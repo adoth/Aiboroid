@@ -1,12 +1,13 @@
 package com.example.aiboroid
 
 import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.DialogFragment
+import androidx.activity.addCallback
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -31,8 +32,11 @@ class DevicesFragment : Fragment() {
                 DevicesViewModel.AccessTokenState.NOT_YET -> findNavController().navigate(R.id.accessTokenSettingFragment)
                 DevicesViewModel.AccessTokenState.INVALID -> {
                     this.viewModel.deleteAccessToken()
+                    showInvalidAccessTokenDialog()
                 }
-                else ->  findNavController().navigate(R.id.accessTokenSettingFragment)
+                DevicesViewModel.AccessTokenState.EXCEED_RATE_LIMIT -> showExceedRateLimitDialog()
+                DevicesViewModel.AccessTokenState.SERVER_ERROR -> showServerErrorDialog()
+                else -> findNavController().navigate(R.id.accessTokenSettingFragment)
             }
         })
         return binding.root
@@ -45,10 +49,40 @@ class DevicesFragment : Fragment() {
             binding.deviceRecyclerView.layoutManager = LinearLayoutManager(context)
             binding.deviceRecyclerView.adapter = CardRecyclerAdapter(this.viewModel.devices.value!!)
         })
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            // Do Nothing
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
+    private fun showInvalidAccessTokenDialog() {
+        AlertDialog.Builder(requireContext())
+            .setCancelable(true)
+            .setMessage(R.string.dialog_access_token_invalid)
+            .setPositiveButton(R.string.dialog_access_token_invalid_positive, DialogInterface.OnClickListener { _, _ ->
+                findNavController().navigate(R.id.action_devicesFragment_to_accessTokenSettingFragment)
+            })
+            .setOnCancelListener { findNavController().navigate(R.id.action_devicesFragment_to_accessTokenSettingFragment) }
+            .show()
+    }
+
+    private fun showExceedRateLimitDialog() {
+        AlertDialog.Builder(requireContext())
+            .setCancelable(false)
+            .setMessage(R.string.dialog_exceed_rate_limit)
+            .show()
+    }
+
+    private fun showServerErrorDialog() {
+        AlertDialog.Builder(requireContext())
+            .setCancelable(false)
+            .setMessage(R.string.dialog_server_error)
+            .show()
+    }
+
 }
