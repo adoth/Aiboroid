@@ -51,7 +51,8 @@ class DevicesFragment : Fragment() {
             binding.deviceRecyclerView.adapter = object : CardRecyclerAdapter(this.viewModel.devices.value!!) {
                 @Override
                 override fun onDeviceClicked(deviceId: String) {
-                    Toast.makeText(requireContext(), deviceId, Toast.LENGTH_SHORT).show()
+                    val action = DevicesFragmentDirections.actionDevicesFragmentToSelectApiTypeFragment(viewModel.accessToken.value!!, deviceId)
+                    findNavController().navigate(action)
                 }
             }
         })
