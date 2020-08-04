@@ -24,8 +24,24 @@
             android:id="@+id/action_devicesFragment_to_accessTokenSettingFragment"
             app:destination="@id/accessTokenSettingFragment"
             app:enterAnim="@anim/slide_from_left"
-            app:exitAnim="@anim/slide_to_right"
-            />
+            app:exitAnim="@anim/slide_to_right" />
+        <action
+            android:id="@+id/action_devicesFragment_to_selectApiTypeFragment"
+            app:destination="@id/selectApiTypeFragment"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_to_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectApiTypeFragment"
+        android:name="com.example.aiboroid.SelectApiTypeFragment"
+        android:label="fragment_select_api_type"
+        tools:layout="@layout/fragment_select_api_type">
+        <argument
+            android:name="accessToken"
+            app:argType="string" />
+        <argument
+            android:name="deviceId"
+            app:argType="string" />
     </fragment>
 
 </navigation>
