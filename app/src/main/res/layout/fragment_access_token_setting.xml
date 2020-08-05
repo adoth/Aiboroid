@@ -26,11 +26,22 @@
             android:id="@+id/input_access_token"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@id/access_token_register_button"
+            android:layout_above="@id/paste_clipboard"
+            android:layout_marginBottom="0dp"
             android:autofillHints="no"
             android:ems="10"
+            android:enabled="false"
             android:hint="@string/access_token"
             android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/paste_clipboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/access_token_register_button"
+            android:layout_centerInParent="true"
+            android:onClick="@{() -> fragment.onPasteClipBoardButtonClick()}"
+            android:text="@string/access_token_paste_clipboard_button" />
 
         <Button
             android:id="@+id/access_token_register_button"
@@ -38,6 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerInParent="true"
+            android:enabled="false"
             android:onClick="@{() -> fragment.onResisterButtonClick(inputAccessToken.getText().toString())}"
             android:text="@string/access_token_register_button" />
     </RelativeLayout>
