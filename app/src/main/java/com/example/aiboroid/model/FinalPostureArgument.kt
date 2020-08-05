@@ -1,7 +1,7 @@
 package com.example.aiboroid.model
 
 data class FinalPostureArgument (
-    val argument: FinalPosture
+    val arguments: FinalPosture
 )
 
 data class FinalPosture(

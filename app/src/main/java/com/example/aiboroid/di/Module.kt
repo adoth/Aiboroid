@@ -1,6 +1,6 @@
 package com.example.aiboroid.di
 
-import com.example.aiboroid.api.TmpName
+import com.example.aiboroid.api.ApiService
 import com.example.aiboroid.repository.AccessTokenRepository
 import com.example.aiboroid.viewmodel.AccessTokenSettingViewModel
 import com.example.aiboroid.viewmodel.ActionApiViewModel
@@ -20,7 +20,7 @@ val repositoryModule = module {
 }
 
 val networkModule = module {
-    single { TmpName(get()) }
+    single { ApiService(get()) }
 }
 
 // TODO: Rename me
