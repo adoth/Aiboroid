@@ -32,9 +32,6 @@ class AccessTokenSettingFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-            // Do Nothing
-        }
     }
 
     override fun onDestroyView() {

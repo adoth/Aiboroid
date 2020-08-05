@@ -30,14 +30,14 @@ class DevicesFragment : Fragment() {
         this.viewModel.accessTokenState.observe(viewLifecycleOwner, Observer { accessTokenState ->
             when (accessTokenState) {
                 DevicesViewModel.AccessTokenState.SAVED -> this.viewModel.getDeviceApi()
-                DevicesViewModel.AccessTokenState.NOT_YET -> findNavController().navigate(R.id.accessTokenSettingFragment)
+                DevicesViewModel.AccessTokenState.NOT_YET -> findNavController().navigate(R.id.action_devicesFragment_to_accessTokenSettingFragment)
                 DevicesViewModel.AccessTokenState.INVALID -> {
                     this.viewModel.deleteAccessToken()
                     showInvalidAccessTokenDialog()
                 }
                 DevicesViewModel.AccessTokenState.EXCEED_RATE_LIMIT -> showExceedRateLimitDialog()
                 DevicesViewModel.AccessTokenState.SERVER_ERROR -> showServerErrorDialog()
-                else -> findNavController().navigate(R.id.accessTokenSettingFragment)
+                else -> findNavController().navigate(R.id.action_devicesFragment_to_accessTokenSettingFragment)
             }
         })
         return binding.root
@@ -56,10 +56,6 @@ class DevicesFragment : Fragment() {
                 }
             }
         })
-
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-            // Do Nothing
-        }
     }
 
     override fun onDestroyView() {
