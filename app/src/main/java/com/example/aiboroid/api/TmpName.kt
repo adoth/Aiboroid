@@ -36,7 +36,11 @@ class TmpName(accessToken: String) {
             .build()
     }
 
-    val settingService by lazy {
+    val settingService: SettingService by lazy {
         retrofit.create(SettingService::class.java)
+    }
+    
+    val actionService: ActionService by lazy {
+        retrofit.create(ActionService::class.java)
     }
 }
