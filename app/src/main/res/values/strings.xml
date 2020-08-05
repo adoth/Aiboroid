@@ -16,6 +16,9 @@
     <string name="select_api_action_api">Aibo を動かす</string>
     <string name="select_api_cognition_api">Aibo の状態を知る</string>
 
+    <!-- Action api -->
+    <string name="action_api_down">ふせる</string>
+
     <!-- Dialog -->
     <string name="dialog_access_token_invalid">無効なアクセストークンか期限切れのアクセストークンです。\nアクセストークンが正しいか確認して再度入力してください。</string>
     <string name="dialog_access_token_invalid_positive">入力しなおす</string>
