@@ -7,23 +7,36 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.aiboroid.databinding.FragmentSelectApiTypeBinding
 import com.example.aiboroid.viewmodel.SelectApiTypeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SelectApiTypeFragment : Fragment() {
 
+    private var _binding: FragmentSelectApiTypeBinding? = null
+    private val binding get() = _binding!!
+
     private val viewModel: SelectApiTypeViewModel by viewModel()
-    val args: SelectApiTypeFragmentArgs by navArgs()
+    private val args: SelectApiTypeFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_select_api_type, container, false)
+        _binding = FragmentSelectApiTypeBinding.inflate(inflater, container, false)
+        binding.actionApiButton.setOnClickListener {
+            val action = SelectApiTypeFragmentDirections.actionSelectApiTypeFragmentToActionApiFragment(args.accessToken, args.deviceId)
+            findNavController().navigate(action)
+        }
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

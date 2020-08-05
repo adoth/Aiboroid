@@ -55,5 +55,31 @@
         <argument
             android:name="deviceId"
             app:argType="string" />
+        <action
+            android:id="@+id/action_selectApiTypeFragment_to_actionApiFragment"
+            app:destination="@id/actionApiFragment"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_to_left"
+            app:popEnterAnim="@anim/slide_from_left"
+            app:popExitAnim="@anim/slide_to_right">
+            <argument
+                android:name="accessToken"
+                app:argType="string" />
+            <argument
+                android:name="deviceId"
+                app:argType="string" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/actionApiFragment"
+        android:name="com.example.aiboroid.ActionApiFragment"
+        android:label="fragment_action_api"
+        tools:layout="@layout/fragment_action_api">
+        <argument
+            android:name="accessToken"
+            app:argType="string" />
+        <argument
+            android:name="deviceId"
+            app:argType="string" />
     </fragment>
 </navigation>
