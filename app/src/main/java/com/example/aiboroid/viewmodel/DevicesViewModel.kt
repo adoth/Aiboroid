@@ -60,6 +60,4 @@ class DevicesViewModel(private val accessTokenRepository: AccessTokenRepository)
             accessTokenRepository.delete()
         }
     }
-
-    private fun tmp() {}
 }
