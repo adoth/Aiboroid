@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.aiboroid.api.ApiService
 import com.example.aiboroid.model.FinalPosture
 import com.example.aiboroid.model.FinalPostureArgument
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class ActionApiViewModel(accessToken: String, private val deviceId: String) :
@@ -29,7 +30,6 @@ class ActionApiViewModel(accessToken: String, private val deviceId: String) :
                 )
             )
             if (response.isSuccessful) {
-                // TODO: retry until succeeded
                 checkExecute(response.body()!!.executionId)
             }
         }
@@ -37,12 +37,27 @@ class ActionApiViewModel(accessToken: String, private val deviceId: String) :
 
     private fun checkExecute(executionId: String) {
         viewModelScope.launch {
-            val response = actionService.getExecution(executionId)
-            if (response.isSuccessful) {
-                executionState.value = when (response.body()!!.status) {
-                    "SUCCEEDED" -> ExecutionState.SUCCEEDED
-                    "FAILED" -> ExecutionState.FAILED
-                    else -> ExecutionState.NONE
+            var cnt = 0
+            loop@ while (true) {
+                delay(3000)
+                val response = actionService.getExecution(executionId)
+                if (response.isSuccessful) {
+                    when (response.body()!!.status) {
+                        "SUCCEEDED" -> {
+                            executionState.value = ExecutionState.SUCCEEDED
+                            break@loop
+                        }
+                        "FAILED" -> {
+                            executionState.value = ExecutionState.FAILED
+                            break@loop
+                        }
+                        else -> cnt++
+                    }
+                }
+                // TODO: fix fxxk timeout
+                if (cnt == 5) {
+                    executionState.value = ExecutionState.NONE
+                    break@loop
                 }
             }
         }
