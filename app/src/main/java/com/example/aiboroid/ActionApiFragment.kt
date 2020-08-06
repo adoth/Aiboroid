@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.example.aiboroid.databinding.FragmentActionApiBinding
 import com.example.aiboroid.viewmodel.ActionApiViewModel
@@ -29,5 +31,16 @@ class ActionApiFragment : Fragment() {
             viewModel.call()
         }
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.executionState.observe(viewLifecycleOwner, Observer { executionState ->
+            when(executionState) {
+                ActionApiViewModel.ExecutionState.SUCCEEDED -> Toast.makeText(requireContext(), "成功！", Toast.LENGTH_SHORT).show()
+                ActionApiViewModel.ExecutionState.FAILED -> Toast.makeText(requireContext(), "失敗！", Toast.LENGTH_SHORT).show()
+                else -> Toast.makeText(requireContext(), "不明", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 }
