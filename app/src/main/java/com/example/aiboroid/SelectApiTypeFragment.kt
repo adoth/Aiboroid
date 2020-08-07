@@ -25,8 +25,7 @@ class SelectApiTypeFragment : Fragment() {
     ): View? {
         _binding = FragmentSelectApiTypeBinding.inflate(inflater, container, false)
         binding.actionApiButton.setOnClickListener {
-            val action = SelectApiTypeFragmentDirections.actionSelectApiTypeFragmentToActionApiFragment(args.accessToken, args.deviceId)
-            findNavController().navigate(action)
+            findNavController().navigate(R.id.action_selectApiTypeFragment_to_tabFragment)
         }
         return binding.root
     }
