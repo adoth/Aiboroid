@@ -28,18 +28,19 @@ class TabFragment : Fragment() {
             tab.text = listOf("うごかす", "にんしき")[position]
         }.attach()
     }
+
+    class SlideAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
+
+        private val fragmentList = listOf(
+            ActionApiFragment(),
+            CognitionApiFragment()
+        )
+
+        override fun getItemCount(): Int = fragmentList.size
+
+        override fun createFragment(position: Int): Fragment =
+            fragmentList[position]
+    }
 }
 
 
-class SlideAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
-
-    private val fragmentList = listOf(
-        ActionApiFragment(),
-        CognitionApiFragment()
-    )
-
-    override fun getItemCount(): Int = fragmentList.size
-
-    override fun createFragment(position: Int): Fragment =
-        fragmentList[position]
-}
