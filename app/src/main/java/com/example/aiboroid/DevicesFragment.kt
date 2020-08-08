@@ -49,8 +49,7 @@ class DevicesFragment : Fragment() {
             binding.deviceRecyclerView.adapter = object : CardRecyclerAdapter(this.viewModel.devices.value!!) {
                 @Override
                 override fun onDeviceClicked(deviceId: String) {
-                    val action = DevicesFragmentDirections.actionDevicesFragmentToSelectApiTypeFragment(viewModel.accessToken.value!!, deviceId)
-                    findNavController().navigate(action)
+                    findNavController().navigate(R.id.action_devicesFragment_to_tabFragment)
                 }
             }
         })

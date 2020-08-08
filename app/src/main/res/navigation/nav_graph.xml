@@ -23,63 +23,23 @@
         android:label="fragment_devices"
         tools:layout="@layout/fragment_devices">
         <action
-            android:id="@+id/action_devicesFragment_to_selectApiTypeFragment"
-            app:destination="@id/selectApiTypeFragment"
-            app:enterAnim="@anim/slide_from_right"
-            app:exitAnim="@anim/slide_to_left"
-            app:popEnterAnim="@anim/slide_from_left"
-            app:popExitAnim="@anim/slide_to_right">
-            <argument
-                android:name="accessToken"
-                app:argType="string" />
-            <argument
-                android:name="deviceId"
-                app:argType="string" />
-        </action>
-        <action
             android:id="@+id/action_devicesFragment_to_accessTokenSettingFragment"
             app:destination="@id/accessTokenSettingFragment"
             app:enterAnim="@anim/slide_from_left"
             app:exitAnim="@anim/slide_to_right"
             app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
-    </fragment>
-    <fragment
-        android:id="@+id/selectApiTypeFragment"
-        android:name="com.example.aiboroid.SelectApiTypeFragment"
-        android:label="fragment_select_api_type"
-        tools:layout="@layout/fragment_select_api_type">
-        <argument
-            android:name="accessToken"
-            app:argType="string" />
-        <argument
-            android:name="deviceId"
-            app:argType="string" />
         <action
-            android:id="@+id/action_selectApiTypeFragment_to_actionApiFragment"
-            app:destination="@id/actionApiFragment"
+            android:id="@+id/action_devicesFragment_to_tabFragment"
+            app:destination="@id/tabFragment"
             app:enterAnim="@anim/slide_from_right"
             app:exitAnim="@anim/slide_to_left"
             app:popEnterAnim="@anim/slide_from_left"
-            app:popExitAnim="@anim/slide_to_right">
-            <argument
-                android:name="accessToken"
-                app:argType="string" />
-            <argument
-                android:name="deviceId"
-                app:argType="string" />
-        </action>
+            app:popExitAnim="@anim/slide_to_right"/>
     </fragment>
     <fragment
-        android:id="@+id/actionApiFragment"
-        android:name="com.example.aiboroid.ActionApiFragment"
-        android:label="fragment_action_api"
-        tools:layout="@layout/fragment_action_api">
-        <argument
-            android:name="accessToken"
-            app:argType="string" />
-        <argument
-            android:name="deviceId"
-            app:argType="string" />
-    </fragment>
+        android:id="@+id/tabFragment"
+        android:name="com.example.aiboroid.TabFragment"
+        android:label="TabFragment"
+        tools:layout="@layout/fragment_tab"/>
 </navigation>
