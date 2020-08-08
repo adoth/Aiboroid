@@ -18,8 +18,8 @@ class ActionApiFragment : Fragment() {
 
     private var _binding: FragmentActionApiBinding? = null
     private val binding get() = _binding!!
-    private val arg: ActionApiFragmentArgs by navArgs()
-    private val viewModel: ActionApiViewModel by viewModel { parametersOf(arg.accessToken, arg.deviceId)}
+//    private val arg: ActionApiFragmentArgs by navArgs()
+//    private val viewModel: ActionApiViewModel by viewModel { parametersOf(arg.accessToken, arg.deviceId)}
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,19 +28,19 @@ class ActionApiFragment : Fragment() {
         _binding = FragmentActionApiBinding.inflate(inflater, container, false)
         binding.actionApiChangePostureDownButton.setOnClickListener {
             // TODO: Rename me
-            viewModel.call()
+//            viewModel.call()
         }
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.executionState.observe(viewLifecycleOwner, Observer { executionState ->
-            when(executionState) {
-                ActionApiViewModel.ExecutionState.SUCCEEDED -> Toast.makeText(requireContext(), "成功！", Toast.LENGTH_SHORT).show()
-                ActionApiViewModel.ExecutionState.FAILED -> Toast.makeText(requireContext(), "失敗！", Toast.LENGTH_SHORT).show()
-                else -> Toast.makeText(requireContext(), "不明", Toast.LENGTH_SHORT).show()
-            }
-        })
+//        viewModel.executionState.observe(viewLifecycleOwner, Observer { executionState ->
+//            when(executionState) {
+//                ActionApiViewModel.ExecutionState.SUCCEEDED -> Toast.makeText(requireContext(), "成功！", Toast.LENGTH_SHORT).show()
+//                ActionApiViewModel.ExecutionState.FAILED -> Toast.makeText(requireContext(), "失敗！", Toast.LENGTH_SHORT).show()
+//                else -> Toast.makeText(requireContext(), "不明", Toast.LENGTH_SHORT).show()
+//            }
+//        })
     }
 }
