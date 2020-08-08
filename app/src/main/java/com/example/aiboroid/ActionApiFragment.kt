@@ -5,13 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.lifecycle.Observer
-import androidx.navigation.fragment.navArgs
+import com.example.aiboroid.adapter.SingleParameterAdapter
 import com.example.aiboroid.databinding.FragmentActionApiBinding
-import com.example.aiboroid.viewmodel.ActionApiViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
-import org.koin.core.parameter.parametersOf
+import com.example.aiboroid.model.ChangePosture
+import com.example.aiboroid.model.SetMode
 
 
 class ActionApiFragment : Fragment() {
@@ -26,10 +23,8 @@ class ActionApiFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentActionApiBinding.inflate(inflater, container, false)
-        binding.actionApiChangePostureDownButton.setOnClickListener {
-            // TODO: Rename me
-//            viewModel.call()
-        }
+        setSetModeAdapter()
+        setChangePostureAdapter()
         return binding.root
     }
 
@@ -42,5 +37,27 @@ class ActionApiFragment : Fragment() {
 //                else -> Toast.makeText(requireContext(), "不明", Toast.LENGTH_SHORT).show()
 //            }
 //        })
+    }
+
+    private fun setSetModeAdapter() {
+        val setModes = listOf(SetMode("まて", SetMode.SetModeType.DEVELOPMENT), SetMode("やめる", SetMode.SetModeType.NORMAL))
+        val adapter = object : SingleParameterAdapter(setModes) {
+            override fun onApiClicked(parameter: String) {
+                super.onApiClicked(parameter)
+                // TODO: call SetMode api
+            }
+        }
+        binding.setModeRecycler.adapter = adapter
+    }
+
+    private fun setChangePostureAdapter() {
+        val changePostures = listOf(ChangePosture("おすわり", ChangePosture.ChangePostureType.sit))
+        val adapter = object : SingleParameterAdapter(changePostures) {
+            override fun onApiClicked(parameter: String) {
+                super.onApiClicked(parameter)
+                // TODO: call ChangePosture api
+            }
+        }
+        binding.changePostureRecycler.adapter = adapter
     }
 }
