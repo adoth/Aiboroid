@@ -12,16 +12,14 @@
     <!-- Devices -->
     <string name="device_image_description">device image</string>
 
-    <!-- Select api -->
-    <string name="select_api_action_api">Aibo を動かす</string>
-    <string name="select_api_cognition_api">Aibo の状態を知る</string>
-
     <!-- Action api -->
-    <string name="action_api_down">ふせる</string>
+    <string name="action_api_set_mode_title">待ち状態</string>
+    <string name="action_api_set_mode_description">aibo の動きがわかりやすくなります。</string>
 
     <!-- Dialog -->
     <string name="dialog_access_token_invalid">無効なアクセストークンか期限切れのアクセストークンです。\nアクセストークンが正しいか確認して再度入力してください。</string>
     <string name="dialog_access_token_invalid_positive">入力しなおす</string>
     <string name="dialog_exceed_rate_limit">一時間あたりにおける操作回数の上限を超えました。しばらく時間をおいてから試してみてください。</string>
     <string name="dialog_server_error">サーバーにアクセスできません。しばらく時間をおいてから試してみてください。</string>
+    <string name="action_api_change_posture_title">姿勢を変える</string>
 </resources>
