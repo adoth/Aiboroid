@@ -6,11 +6,12 @@ import androidx.lifecycle.viewModelScope
 import com.example.aiboroid.api.ApiService
 import com.example.aiboroid.model.FinalPosture
 import com.example.aiboroid.model.FinalPostureArgument
+import com.example.aiboroid.model.ModeName
+import com.example.aiboroid.model.SetModeArgument
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class ActionApiViewModel(accessToken: String, private val deviceId: String) :
-    ViewModel() {
+class ActionApiViewModel(accessToken: String, private val deviceId: String) : ViewModel() {
 
     var executionState = MutableLiveData<ExecutionState>()
 
@@ -20,7 +21,18 @@ class ActionApiViewModel(accessToken: String, private val deviceId: String) :
         FAILED
     }
 
-    private val actionService = ApiService(accessToken).actionService
+    private val apiService = ApiService(accessToken)
+    private val settingService = apiService.settingService
+    private val actionService = apiService.actionService
+
+    fun callSetModeApi(parameter: String) {
+        viewModelScope.launch {
+            val response = settingService.setMode(deviceId, SetModeArgument(ModeName(parameter)))
+            if (response.isSuccessful) {
+                checkExecute(response.body()!!.executionId)
+            }
+        }
+    }
 
     fun call() {
         viewModelScope.launch {

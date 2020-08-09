@@ -51,7 +51,7 @@ class ActionApiFragment : Fragment() {
         val adapter = object : SingleParameterAdapter(setModes) {
             override fun onApiClicked(parameter: String) {
                 super.onApiClicked(parameter)
-                // TODO: call SetMode api
+                viewModel.callSetModeApi(parameter)
             }
         }
         binding.setModeRecycler.adapter = adapter
