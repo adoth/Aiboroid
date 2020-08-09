@@ -5,18 +5,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import com.example.aiboroid.adapter.SingleParameterAdapter
 import com.example.aiboroid.databinding.FragmentActionApiBinding
 import com.example.aiboroid.model.ChangePosture
 import com.example.aiboroid.model.SetMode
+import com.example.aiboroid.viewmodel.ActionApiViewModel
+import com.example.aiboroid.viewmodel.ShareIdViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 
 class ActionApiFragment : Fragment() {
 
     private var _binding: FragmentActionApiBinding? = null
     private val binding get() = _binding!!
-//    private val arg: ActionApiFragmentArgs by navArgs()
-//    private val viewModel: ActionApiViewModel by viewModel { parametersOf(arg.accessToken, arg.deviceId)}
+    private val shareViewMode: ShareIdViewModel by activityViewModels()
+    private val viewModel: ActionApiViewModel by viewModel { parametersOf(shareViewMode.accessToken, shareViewMode.deviceId)}
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,13 +37,13 @@ class ActionApiFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        viewModel.executionState.observe(viewLifecycleOwner, Observer { executionState ->
-//            when(executionState) {
-//                ActionApiViewModel.ExecutionState.SUCCEEDED -> Toast.makeText(requireContext(), "成功！", Toast.LENGTH_SHORT).show()
-//                ActionApiViewModel.ExecutionState.FAILED -> Toast.makeText(requireContext(), "失敗！", Toast.LENGTH_SHORT).show()
-//                else -> Toast.makeText(requireContext(), "不明", Toast.LENGTH_SHORT).show()
-//            }
-//        })
+        viewModel.executionState.observe(viewLifecycleOwner, Observer { executionState ->
+            when(executionState) {
+                ActionApiViewModel.ExecutionState.SUCCEEDED -> Toast.makeText(requireContext(), "成功！", Toast.LENGTH_SHORT).show()
+                ActionApiViewModel.ExecutionState.FAILED -> Toast.makeText(requireContext(), "失敗！", Toast.LENGTH_SHORT).show()
+                else -> Toast.makeText(requireContext(), "不明", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     private fun setSetModeAdapter() {
@@ -44,7 +51,7 @@ class ActionApiFragment : Fragment() {
         val adapter = object : SingleParameterAdapter(setModes) {
             override fun onApiClicked(parameter: String) {
                 super.onApiClicked(parameter)
-                // TODO: call SetMode api
+                viewModel.callSetModeApi(parameter)
             }
         }
         binding.setModeRecycler.adapter = adapter

@@ -7,18 +7,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.aiboroid.adapter.CardRecyclerAdapter
 import com.example.aiboroid.databinding.FragmentDevicesBinding
 import com.example.aiboroid.viewmodel.DevicesViewModel
+import com.example.aiboroid.viewmodel.ShareIdViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DevicesFragment : Fragment() {
     private var _binding: FragmentDevicesBinding? = null
     private val binding get() = _binding!!
     private val viewModel: DevicesViewModel by viewModel()
+    private val shareViewModel: ShareIdViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,6 +52,8 @@ class DevicesFragment : Fragment() {
             binding.deviceRecyclerView.adapter = object : CardRecyclerAdapter(this.viewModel.devices.value!!) {
                 @Override
                 override fun onDeviceClicked(deviceId: String) {
+                    shareViewModel.accessToken = viewModel.accessToken.value!!
+                    shareViewModel.deviceId = deviceId
                     findNavController().navigate(R.id.action_devicesFragment_to_tabFragment)
                 }
             }
