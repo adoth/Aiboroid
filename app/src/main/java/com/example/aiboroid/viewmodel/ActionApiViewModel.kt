@@ -52,7 +52,7 @@ class ActionApiViewModel(accessToken: String, private val deviceId: String) : Vi
             var cnt = 0
             loop@ while (true) {
                 delay(3000)
-                val response = actionService.getExecution(executionId)
+                val response = settingService.getExecution(executionId)
                 if (response.isSuccessful) {
                     when (response.body()!!.status) {
                         "SUCCEEDED" -> {

@@ -14,6 +14,9 @@ interface SettingService {
     @GET("devices")
     suspend fun getDevice(): Response<Devices>
 
+    @GET("executions/{executionId}")
+    suspend fun getExecution(@Path("executionId") executionId: String): Response<BaseResponse>
+
     @POST("devices/{deviceId}/capabilities/set_mode/execute")
     suspend fun setMode(@Path("deviceId") deviceId: String, @Body arg: SetModeArgument): Response<BaseResponse>
 }

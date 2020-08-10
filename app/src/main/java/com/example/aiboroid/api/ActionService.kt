@@ -9,9 +9,6 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface ActionService {
-    @GET("executions/{executionId}")
-    suspend fun getExecution(@Path("executionId") executionId: String): Response<BaseResponse>
-
     @POST("devices/{deviceId}/capabilities/change_posture/execute")
     suspend fun changePostureDown(@Path("deviceId") deviceId: String, @Body arg: FinalPostureArgument): Response<BaseResponse>
 }
