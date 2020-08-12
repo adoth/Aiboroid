@@ -35,7 +35,7 @@
 
         <TextView
             android:id="@+id/change_posture_title"
-            style="@style/ApiTitle"
+            style="@style/ApiTitle.Next"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/action_api_change_posture_title"
@@ -56,7 +56,7 @@
 
         <TextView
             android:id="@+id/play_motion_title"
-            style="@style/ApiTitle"
+            style="@style/ApiTitle.Next"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TextView"
