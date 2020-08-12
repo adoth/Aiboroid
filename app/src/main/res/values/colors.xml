@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#63F294</color>
-    <color name="colorPrimaryDark">#11CE52</color>
-    <color name="colorAccent">#F2637A</color>
+    <!-- Theme & Accent -->
+    <color name="theme300">#63F294</color>
+    <color name="theme500">#00E564</color>
+    <color name="accent300">#f263c0</color>
+
+    <!-- Greyscales -->
+    <color name="grey200">#EEEEEE</color>
+    <color name="grey600">#757575</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
 </resources>
