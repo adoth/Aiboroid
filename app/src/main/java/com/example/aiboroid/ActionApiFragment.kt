@@ -58,11 +58,18 @@ class ActionApiFragment : Fragment() {
     }
 
     private fun setChangePostureAdapter() {
-        val changePostures = listOf(ChangePosture("おすわり", ChangePosture.ChangePostureType.sit))
+        val changePostures = listOf(
+            ChangePosture("ごろん", ChangePosture.ChangePostureType.BACK),
+            ChangePosture("ふせ", ChangePosture.ChangePostureType.DOWN),
+            ChangePosture("はいたっち", ChangePosture.ChangePostureType.SIT_AND_RAISE_BOTH_HANDS),
+            ChangePosture("おすわり", ChangePosture.ChangePostureType.SIT),
+            ChangePosture("おねんね", ChangePosture.ChangePostureType.SLEEP),
+            ChangePosture("たつ", ChangePosture.ChangePostureType.STAND)
+        )
         val adapter = object : SingleParameterAdapter(changePostures) {
             override fun onApiClicked(parameter: String) {
                 super.onApiClicked(parameter)
-                // TODO: call ChangePosture api
+                viewModel.callChangePosture(parameter)
             }
         }
         binding.changePostureRecycler.adapter = adapter
