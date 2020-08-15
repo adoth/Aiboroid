@@ -16,11 +16,6 @@ class AccessTokenRepository {
         return dao.getAccessToken("1")
     }
 
-    suspend fun findAll(): List<AccessToken> {
-        val dao = AiboroidApplication.database.accessTokenDao()
-        return dao.getAll()
-    }
-
     suspend fun delete() {
         val dao = AiboroidApplication.database.accessTokenDao()
         dao.delete(AccessToken("1", ""))
