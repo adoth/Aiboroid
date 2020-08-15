@@ -34,11 +34,11 @@ class ActionApiViewModel(accessToken: String, private val deviceId: String) : Vi
         }
     }
 
-    fun call() {
+    fun callChangePosture(parameter: String) {
         viewModelScope.launch {
             val response = actionService.changePostureDown(
                 deviceId, FinalPostureArgument(
-                    FinalPosture("down")
+                    FinalPosture(parameter)
                 )
             )
             if (response.isSuccessful) {
